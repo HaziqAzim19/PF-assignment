@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+float length(float num) {
+    float length = 1;
+    while (num != 1) {
+        if (((int)num) % 2 == 0) { // Checking if the number is even without using fmod
+            num = num / 2;
+        } else {	
+            num = 3 * num + 1;
+        }
+        length++;
+    }
+    return length;
+}
+
+float flcuN(float limit) {
+    float maxLength = 0, maxNumber = 0, currentLength;
+    for (float i = 2; i <= limit; i++) {
+        currentLength = length(i);
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+            maxNumber = i;
+        }
+    }
+    return maxNumber;
+}
+
+int main() {
+    float limit, maxNum;
+    printf("Enter a limit: ");
+    scanf("%f", &limit);
+    maxNum = flcuN(limit);
+    printf("The number under %.0f with the longest Collatz sequence is: %.0f\n", limit, maxNum);
+    return 0;
+}
